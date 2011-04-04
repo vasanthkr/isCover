@@ -1,0 +1,16 @@
+ _     _____                   ___  
+(_)   /  __ \                 |__ \ 
+ _ ___| /  \/ _____   _____ _ __ ) |
+| / __| |    / _ \ \ / / _ \ '__/ / 
+| \__ \ \__/\ (_) \ V /  __/ | |_|  
+|_|___/\____/\___/ \_/ \___|_| (_)  
+README
+
+Checklist:
+[ ] Get a dataset of mp3 files (with significant number of covers).
+[ ] TC and HC descriptors from mp3 file.
+[ ] AR Process on s*.
+[ ] TAR models on s*.
+[ ] Cover prediction.
+[ ] Evaluation.
+[ ] Improve and iterate.
