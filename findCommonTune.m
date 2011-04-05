@@ -11,10 +11,7 @@
 
 % implementation by Mikhail Bessmeltsev, 2011.
 	
-function [hpcp, index] = findCommonTune(aFileName,bFileName)
- a = miraudio(aFileName);
-b = miraudio(bFileName);
-
+function [hpcp, index] = findCommonTune(a,b)
 % calculate tonal centroids for both
 [c_a ch_a] = mirtonalcentroid(a,'Frame');
 [c_b ch_b] = mirtonalcentroid(b,'Frame');
