@@ -1,4 +1,4 @@
-function [As medoids] = modelTAR(S, S_x, K)
+function [As medoids label] = modelTAR(S, S_x, K)
 %MODELTAR Find TAR coefficients for a given time series
 %   S_a(D x N') : time series of descriptors.
 %   S_x(MD x N'): time series of history-concatenated descriptors.
