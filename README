@@ -8,9 +8,9 @@ README
 
 Checklist:
 [ ] Get a dataset of mp3 files (with significant number of covers).
-[ ] TC and HC descriptors from mp3 file.
-[ ] AR Process on s*.
-[ ] TAR models on s*.
+[-] TC and HC descriptors from mp3 file.
+[*] AR Process on s*.
+[*] TAR models on s*.
 [ ] Cover prediction.
 [ ] Evaluation.
 [ ] Improve and iterate.
