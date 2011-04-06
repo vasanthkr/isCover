@@ -1,9 +1,10 @@
 function [As medoids label] = modelTAR(S, S_x, K)
 %MODELTAR Find TAR coefficients for a given time series
-%   S_a(D x N') : time series of descriptors.
+%   S(D x N') : time series of descriptors.
 %   S_x(MD x N'): time series of history-concatenated descriptors.
 %                 (where N' = N - w - h)
 %   K           : number of clusters
+
 
 %% Cluster columns of S_x into K clusters
 [label, ~, medIndex] = kmedoids(S_x, K);
