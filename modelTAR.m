@@ -1,4 +1,4 @@
-function [As medoids] = modelTAR(S_a, S_x, K)
+function [As medoids] = modelTAR(S, S_x, K)
 %MODELTAR Find TAR coefficients for a given time series
 %   S_a(D x N') : time series of descriptors.
 %   S_x(MD x N'): time series of history-concatenated descriptors.
@@ -9,9 +9,9 @@ function [As medoids] = modelTAR(S_a, S_x, K)
 [label, ~, medIndex] = kmedoids(S_x, K);
 
 %% Find AR clusters for each clusters
-As = zeros(size(S_a, 1), size(S_x, 1), K);
+As = zeros(size(S, 1), size(S_x, 1), K);
 for k = 1:K
-    As(:, :, k) = (S_x(:,(label==k))' \ S_a(:, (label==k))')';
+    As(:, :, k) = (S_x(:,(label==k))' \ S(:, (label==k))')';
 end
 
 %% Filter the K medoids
