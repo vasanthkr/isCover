@@ -27,11 +27,12 @@ for n = w+1:N-h
 end
 
 %% make predictions as horizon h
-S_pred = zeros(D, n-w-h);
+S_pred = zeros(D, n-w-h); 
 
-label = ones(N);
-% TODO: for each vector in S_x, determine its cluster label
+% assign labels for each vector in S_x
+[~, label] = min(sqdistance(medoids,S_x));
 
+% predict using corresponding TAR coefficient
 for n = 1:N-w-h
     S_pred(:, n) = As(:,:,label(n)) * S_x(:, n);
 end

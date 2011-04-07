@@ -21,4 +21,4 @@ S_b = circshift(S_a, [4 0]);
 
 %% Predict S_b using As and compute errors
 [~, error] = predictWithTAR(S_bt, h, m, tau, As, medoids);
-error
+fprintf('Prediction error: %2.5f\n', error);
