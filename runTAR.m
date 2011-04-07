@@ -18,3 +18,7 @@ fprintf('  K   = %d\n', K);
 S_b = circshift(S_a, [4 0]);
 
 [S_bt OTI] = musicalTranspose(S_b, S_a);
+
+%% Predict S_b using As and compute errors
+[~, error] = predictWithTAR(S_bt, h, m, tau, As, medoids);
+error
