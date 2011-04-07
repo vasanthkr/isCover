@@ -37,6 +37,6 @@ for i=1:size(g_b,2)-1
         maxdot = g_a * new_g_b';
     end
 end
- hpcp = new_g_b;
+ hpcp = new_g_b; %% WARN
  index = argmax;
 end
