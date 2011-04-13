@@ -61,13 +61,13 @@ for m = m_range
             error = error / (N-h-w);
             
             % debug
-            fprintf('[%2d|%2d|%2d] error: %2.5f', m, tau, K, error);
+            %fprintf('[%2d|%2d|%2d] error: %2.5f', m, tau, K, error);
             
             % if smaller error, update best values
             if (error < error_best)
                 
                 % debug
-                fprintf('*');
+            %    fprintf('*');
                 
                 error_best = error;
                 m_best = m;
@@ -78,7 +78,7 @@ for m = m_range
             end
             
             %debug
-            fprintf('\n');
+            %fprintf('\n');
         end % K_range
     end % tau_range
 end % m_range
