@@ -6,8 +6,12 @@ function [ m_best tau_best K_best As_best medoids_best ] = bestTAR(S, h)
 
 % space of values for grid search
 m_range = [2 3 4 5 7 9 12 15];
+%m_range = [5];
 tau_range = [1 2 6 9 15];
+%tau_range = [1 2];
+%tau_range = [6];
 K_range = [2 3 4 5 6 7 8 9 10 12 15 20 30 40 50];
+%K_range = [5];
 
 % initialize default best values
 m_best = -1;
@@ -19,15 +23,20 @@ error_best = inf;
 
 
 %% estimate variance
-sigmasq = ones(D);
-for d = 1:D
-    sigmasq(d) = (mean(S(d, :).^2) - mean(S(d, :))^2) * N/(N-1);
-end
 
+eraseLength = 0;
 %% grid-search over parameter space
 for m = m_range
     for tau = tau_range
         w = (m-1) * tau; % embedding window
+        
+        sigmasq = ones(D);
+        
+        vectorLength =  N-w+h;
+        for d = 1:D
+            sigmasq(d) = (mean(S(d, w+h+1:N).^2) - mean(S(d, w+h+1:N))^2) * vectorLength/(vectorLength-1);
+        end
+
         
         % construct S_x
         S_x = zeros(D*m, N-w-h);
@@ -61,7 +70,11 @@ for m = m_range
             error = error / (N-h-w);
             
             % debug
-            %fprintf('[%2d|%2d|%2d] error: %2.5f', m, tau, K, error);
+            
+            for i=1:eraseLength 
+                fprintf('\b');
+            end
+            eraseLength = fprintf('[%2d|%2d|%2d] error: %2.5f\r', m, tau, K, error);
             
             % if smaller error, update best values
             if (error < error_best)

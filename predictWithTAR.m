@@ -12,8 +12,9 @@ assert(size(As,2) == (m*D), 'm is incompatible with dimensions of As!');
 
 %% estimate variance
 sigmasq = ones(D);
+vectorLength =  N-w+h;
 for d = 1:D
-    sigmasq(d) = (mean(S(d, :).^2) - mean(S(d, :))^2) * N/(N-1);
+    sigmasq(d) = (mean(S(d, w+h+1:N).^2) - mean(S(d, w+h+1:N))^2) * vectorLength/(vectorLength-1);
 end
 
 %% construct S_x
