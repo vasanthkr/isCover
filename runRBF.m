@@ -51,7 +51,7 @@ for i = 1:1
         
         % Learn optimal TAR coefficients
         %fprintf('try #%d\n',s);
-        [m tau K alpha As medoids] = bestRBF(curS_a, h);
+        [m tau K alpha B medoids rho] = bestRBF(curS_a, h);
         %[As medoids] = doTmpTar(curS_a, h, m, tau, K);
         fprintf('Best parameters:\n');
         fprintf('  m   = %d\n', m);
@@ -70,7 +70,7 @@ for i = 1:1
             [S_bt OTI] = musicalTranspose(curS_b, curS_a);
             
             % Predict S_b using As and compute errors
-            [~, err] = predictWithRBF(S_bt, h, m, tau, As, medoids);
+            [~, err] = predictWithRBF(S_bt, h, m, tau, alpha, B, medoids, rho);
             ksi(i,j) = err;
             %fprintf('Prediction error: %2.5f\n', error(num));         
         end

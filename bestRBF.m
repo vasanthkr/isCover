@@ -1,14 +1,17 @@
-function [ m_best tau_best K_best alpha_best As_best medoids_best ] = bestRBF(S, h)
+function [ m_best tau_best K_best alpha_best B_best medoids_best rho_best] = bestRBF(S, h)
 %BESTTAR Summary of this function goes here
 %   Detailed explanation goes here
 
 [D N] = size(S);
 
 % space of values for grid search
-m_range = [2 3 4 5 7 9 12 15];
+%m_range = [2 3 4 5 7 9 12 15];
+m_range = [15];
 tau_range = [1 2 6 9 15];
-K_range = [2 3 4 5 6 7 8 9 10 12 15 20 30 40 50];
-alpha_range = [0.5 0.75 1 1.25 1.5 2 2.5 3 3.5 4 5 7 9];
+%K_range = [2 3 4 5 6 7 8 9 10 12 15 20 30 40 50];
+K_range = [40 50];
+%alpha_range = [0.5 0.75 1 1.25 1.5 2 2.5 3 3.5 4 5 7 9];
+alpha_range = [1];
 
 % initialize default best values
 m_best = -1;
@@ -16,6 +19,7 @@ tau_best = -1;
 K_best = -1;
 alpha_best = -1;
 B_best = [];
+rho_best = [];
 medoids_best = [];
 error_best = inf;
 
@@ -98,6 +102,7 @@ for m = m_range
                     alpha_best = alpha;
                     B_best = B;
                     medoids_best = medoids;
+                    rho_best = rho;
                 end
                 
                 %debug
