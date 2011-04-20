@@ -6,8 +6,9 @@ function [ m_best tau_best K_best alpha_best B_best medoids_best rho_best] = bes
 
 % space of values for grid search
 %m_range = [2 3 4 5 7 9 12 15];
-m_range = [15];
-tau_range = [1 2 6 9 15];
+m_range = [12 15];
+%tau_range = [1 2 6 9 15];
+tau_range = [1 6 15];
 %K_range = [2 3 4 5 6 7 8 9 10 12 15 20 30 40 50];
 K_range = [40 50];
 %alpha_range = [0.5 0.75 1 1.25 1.5 2 2.5 3 3.5 4 5 7 9];

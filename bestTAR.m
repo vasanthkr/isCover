@@ -5,13 +5,13 @@ function [ m_best tau_best K_best As_best medoids_best ] = bestTAR(S, h)
 [D N] = size(S);
 
 % space of values for grid search
-m_range = [2 3 4 5 7 9 12 15];
-%m_range = [5];
-tau_range = [1 2 6 9 15];
-%tau_range = [1 2];
+%m_range = [2 3 4 5 7 9 12 15];
+m_range = [12 15];
+%tau_range = [1 2 6 9 15];
+tau_range = [1 6 15];
 %tau_range = [6];
-K_range = [2 3 4 5 6 7 8 9 10 12 15 20 30 40 50];
-%K_range = [5];
+%K_range = [2 3 4 5 6 7 8 9 10 12 15 20 30 40 50];
+K_range = [40 50];
 
 % initialize default best values
 m_best = -1;
