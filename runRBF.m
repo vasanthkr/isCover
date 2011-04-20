@@ -1,5 +1,5 @@
-%clear;
-%warning off all;
+clear;
+warning off all;
 %% find all the input files
 % basePath = 'C:\Users\bmpix\Documents\study\540\git\';
 % folders = dir (strcat(basePath,'music'));
@@ -21,12 +21,12 @@
 
 
 %% initialization
-%load FBigData;
+load FBigData;
 
-%numOfFiles = size(files,1);
-%D = 12;             % Descriptor length
+numOfFiles = size(files,1);
+D = 12;             % Descriptor length
 
-%h = 10;              % Prediction horizon
+h = 10;              % Prediction horizon
 
 %% do pairwise comparison
 %for i = 1:numOfFiles
@@ -40,9 +40,9 @@
 %K_range = 50;
 %max_right = 1;
 
-%ksi = zeros(numOfFiles,numOfFiles);
+ksi = zeros(numOfFiles,numOfFiles);
 
-for i = 28:66
+for i = 1:1
    % for s = 1:20
         %fprintf('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n');
         fprintf('Base song (%d/66): %s\n',i,files{i});
@@ -51,12 +51,13 @@ for i = 28:66
         
         % Learn optimal TAR coefficients
         %fprintf('try #%d\n',s);
-        [m tau K As medoids] = bestTAR(curS_a, h);
+        [m tau K alpha As medoids] = bestRBF(curS_a, h);
         %[As medoids] = doTmpTar(curS_a, h, m, tau, K);
         fprintf('Best parameters:\n');
         fprintf('  m   = %d\n', m);
         fprintf('  tau = %d\n', tau);
         fprintf('  K   = %d\n', K);
+        fprintf('  alpha   = %d\n', alpha);
         
         
         for j = 1:numOfFiles
@@ -69,7 +70,7 @@ for i = 28:66
             [S_bt OTI] = musicalTranspose(curS_b, curS_a);
             
             % Predict S_b using As and compute errors
-            [~, err] = predictWithTAR(S_bt, h, m, tau, As, medoids);
+            [~, err] = predictWithRBF(S_bt, h, m, tau, As, medoids);
             ksi(i,j) = err;
             %fprintf('Prediction error: %2.5f\n', error(num));         
         end

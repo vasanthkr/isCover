@@ -30,7 +30,9 @@ while any(label ~= last)
         idx = (label==i);
         [~,tmp] = min(sum(D(idx,idx),1));
         idx = find(idx);
-        medoid(i) = idx(tmp);
+        if any(idx)
+            medoid(i) = idx(tmp);
+        end;
     end  
     last = label;
     [val,label] = min(D(medoid,:));

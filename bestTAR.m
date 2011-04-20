@@ -30,11 +30,12 @@ for m = m_range
     for tau = tau_range
         w = (m-1) * tau; % embedding window
         
-        sigmasq = ones(D);
+        sigmasq = ones(1,D);
         
-        vectorLength =  N-w+h;
+        %vectorLength =  N-w+h;
         for d = 1:D
-            sigmasq(d) = (mean(S(d, w+h+1:N).^2) - mean(S(d, w+h+1:N))^2) * vectorLength/(vectorLength-1);
+            %sigmasq(d) = (mean(S(d, w+h+1:N).^2) - mean(S(d, w+h+1:N))^2) * vectorLength/(vectorLength-1);
+            sigmasq(d) = var(S(d,w+h+1:N));
         end
 
         
