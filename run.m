@@ -1,18 +1,21 @@
 %% Initialization
-clear;
-aFileName = 'Nouvelle Vague - Too Drunk To Fuck';
-bFileName = 'dead kennedys - too drunk to fuck';
-a = miraudio(aFileName);
-b = miraudio(bFileName);
+%clear;
+%aFileName = '1';
+%bFileName = '2';
+%a = miraudio(aFileName);
+%b = miraudio(bFileName);
+load 'testPair';
 
+%% Other
 mArray = [1 2 3 5 9 12 15];
 tauArray = [1 2 6 9 15];
 KArray = [1 2 3 4 5 6 7 8 10 12 15 20 30 40 50];
 
-[c_a ch_a] = mirtonalcentroid(a,'Frame');
-[c_b ch_b] = mirtonalcentroid(b,'Frame');
-S_a = get(ch_a,'Magnitude');
-S_a = cell2mat(S_a{1});
+%[c_a ch_a] = mirtonalcentroid(a,'Frame');
+%[c_b ch_b] = mirtonalcentroid(b,'Frame');
+
+%S_a = get(ch_a,'Magnitude');
+%S_a = cell2mat(S_a{1});
 N = size(S_a,2);
 D = 12;
 h = 2; % prediction horizon
@@ -29,7 +32,7 @@ end
 %% Learning AR
 for m = mArray
  for tau = tauArray
-   w = (m-1)*tau; %embedding window
+   w = (m-1)*tau; % embedding window
    Sstar = zeros(D*m,N-w-h);
      
    for n = w+1:N-h
@@ -39,6 +42,10 @@ for m = mArray
        end
        Sstar(:,n-w) = sstar_n;
    end
+   
+   fprintf('m=%d,N=%d;h=%d\n, calcN=%d', m, N, h, N-w-h);
+   size(Sstar)
+   fprintf('\n');
    
    %Shat = zeros(D, N-w-h);
    %for n = w+1:N-h
